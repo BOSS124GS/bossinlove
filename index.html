@@ -168,6 +168,7 @@
             height: 100%;
             background-color: rgba(255, 255, 255, 0.9);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             font-size: clamp(24px, 5vw, 48px);
@@ -269,7 +270,7 @@
     </div>
     
     <div class="container">
-        <img class="character" src="34c784d7-d604-4254-b391-7c02df359135.jpg" alt="น่ารักจังเลย">
+        <img class="character" src="5d5ab1ef-99c5-4607-9260-44ddc2df0704.jpg" alt="น่ารักจังเลย">
         <div class="question">แฟนบอสไหม?</div>
         <div class="buttons">
             <button class="yes" onclick="sayYes()">เป็นค้าบบบ</button>
@@ -359,7 +360,10 @@
             
             const loveMessage = document.createElement('div');
             loveMessage.className = 'love-message';
-            loveMessage.innerHTML = 'อิอิ รักนะค้าบบบ 💕✨';
+            loveMessage.innerHTML = `
+                <img src="ดดดดดดดฟ.jpg" style="width: 200px; height: 200px; object-fit: cover; border-radius: 10px; margin-bottom: 20px;">
+                <div>อิอิ รักนะค้าบบบ 💕✨</div>
+            `;
             document.body.appendChild(loveMessage);
             
             confetti({
