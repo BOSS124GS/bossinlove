@@ -1,11 +1,73 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>My Website</title>
+    <title>จะเป็นแฟนหนูไหม?</title>
     <meta charset="UTF-8">
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #ffe6ea;
+            font-family: 'Sarabun', sans-serif;
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        .character {
+            width: 150px;
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 24px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        button {
+            padding: 10px 30px;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: scale(1.1);
+        }
+
+        .yes {
+            background-color: #ff9eb5;
+            color: white;
+        }
+
+        .no {
+            background-color: #8d9db9;
+            color: white;
+        }
+    </style>
 </head>
 <body>
-    <h1>Welcome to My Website</h1>
-    <p>This is my first website on GitHub Pages!</p>
+    <div class="container">
+        <img class="character" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='white' stroke='gray' stroke-width='2'/%3E%3Ccircle cx='35' cy='45' r='5' fill='black'/%3E%3Ccircle cx='65' cy='45' r='5' fill='black'/%3E%3Cpath d='M40 65 Q50 75 60 65' stroke='black' fill='none'/%3E%3Cpath d='M50 25 Q50 15 60 25' stroke='pink' fill='pink'/%3E%3C/svg%3E" alt="น่ารัก">
+        <div class="question">จะเป็นแฟนหนูไหม?</div>
+        <div class="buttons">
+            <button class="yes" onclick="alert('ขอบคุณนะคะ 💕')">ตกลง</button>
+            <button class="no" onclick="alert('จริงๆ หรอคะ? 🥺')">ไม่ตกลง</button>
+        </div>
+    </div>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
 </body>
 </html>
