@@ -14,30 +14,27 @@
             background-color: #ffe6ea;
             font-family: 'Sarabun', sans-serif;
         }
-
         .container {
             text-align: center;
         }
-
         .character {
-            width: 200px;  /* ปรับขนาดรูปภาพ */
-            height: auto;
+            width: 200px;
+            height: 200px;
             margin-bottom: 20px;
-            border-radius: 10px; /* เพิ่มขอบมน */
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* เพิ่มเงา */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            object-fit: cover;
+            transition: all 0.3s ease;
         }
-
         .question {
             font-size: 24px;
             color: #666;
             margin-bottom: 20px;
         }
-
         .buttons {
             display: flex;
             gap: 20px;
         }
-
         button {
             padding: 10px 30px;
             font-size: 18px;
@@ -46,21 +43,17 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-
         button:hover {
             transform: scale(1.1);
         }
-
         .yes {
             background-color: #ff9eb5;
             color: white;
         }
-
         .no {
             background-color: #8d9db9;
             color: white;
         }
-
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
             50% { transform: translateY(-10px); }
@@ -69,13 +62,31 @@
     <script>
         let fontSize = 18;
         let clickCount = 0;
+        const images = [
+            '/api/placeholder/200/200',
+            '/api/placeholder/220/220',
+            '/api/placeholder/240/240',
+            '/api/placeholder/260/260'
+        ];
+        let currentImageIndex = 0;
 
         function makeYesButtonBigger() {
             clickCount++;
             fontSize += 5;
             const yesButton = document.querySelector('.yes');
+            const characterImg = document.querySelector('.character');
+            
+            // Update button size and animation
             yesButton.style.fontSize = fontSize + 'px';
             yesButton.style.animation = 'bounce 0.5s';
+            
+            // Change image
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            characterImg.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                characterImg.src = images[currentImageIndex];
+                characterImg.style.transform = 'scale(1)';
+            }, 150);
             
             setTimeout(() => {
                 yesButton.style.animation = '';
@@ -93,7 +104,7 @@
 </head>
 <body>
     <div class="container">
-        <img class="character" src="5d5ab1ef-99c5-4607-9260-44ddc2df0704.jpg" alt="รูปน่ารัก">
+        <img class="character" src="/api/placeholder/200/200" alt="รูปน่ารัก">
         <div class="question">แฟนบอสไหม?</div>
         <div class="buttons">
             <button class="yes" onclick="sayYes()">เป็นค้าบบบ</button>
