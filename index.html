@@ -281,23 +281,31 @@
         function sayYes() {
             const container = document.querySelector('.container');
             const overlay = document.querySelector('.message-overlay');
+            const question = document.querySelector('.question');
             
-            if (overlay.classList.contains('show')) {
-                overlay.style.animation = 'heartBeat 1s ease-in-out';
-            } else {
-                container.style.animation = 'heartBeat 1s ease-in-out';
-            }
+            // Shoot confetti
+            confetti({
+                particleCount: 150,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
             
+            // Change container appearance
+            container.style.animation = 'heartBeat 1s ease-in-out';
+            
+            // Update text with larger size and different style
+            question.style.fontSize = '36px';
+            question.style.color = '#ff4081';
+            question.innerHTML = 'อิอิ รักนะค้าบบบ 💕✨';
+            
+            // Add some extra effects
             setTimeout(() => {
                 confetti({
                     particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 }
+                    spread: 100,
+                    origin: { y: 0.7 }
                 });
-                setTimeout(() => {
-                    alert('อิอิ รักนะค้าบบบ 💕✨');
-                }, 500);
-            }, 200);
+            }, 500);
         }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
