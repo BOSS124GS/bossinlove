@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>จะเป็นแฟนหนูไหม?</title>
+    <title>แฟนบอสไหม?</title>
     <meta charset="UTF-8">
     <style>
         body {
@@ -41,7 +41,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: all 0.2s;
         }
 
         button:hover {
@@ -57,15 +57,46 @@
             background-color: #8d9db9;
             color: white;
         }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
     </style>
+    <script>
+        let fontSize = 18;
+        let clickCount = 0;
+
+        function makeYesButtonBigger() {
+            clickCount++;
+            fontSize += 5;
+            const yesButton = document.querySelector('.yes');
+            yesButton.style.fontSize = fontSize + 'px';
+            yesButton.style.animation = 'bounce 0.5s';
+            
+            // เพิ่มการสั่น
+            setTimeout(() => {
+                yesButton.style.animation = '';
+            }, 500);
+
+            // ถ้ากดหลายครั้ง จะมีข้อความแซว
+            if (clickCount > 3) {
+                alert('กดไม่ต้องกดก็ได้นะ รู้ว่าอยากกดเป็นค้าบบบ 😏');
+            }
+        }
+
+        function sayYes() {
+            alert('อิอิ รักนะค้าบบบ 💕');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <img class="character" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='white' stroke='gray' stroke-width='2'/%3E%3Ccircle cx='35' cy='45' r='5' fill='black'/%3E%3Ccircle cx='65' cy='45' r='5' fill='black'/%3E%3Cpath d='M40 65 Q50 75 60 65' stroke='black' fill='none'/%3E%3Cpath d='M50 25 Q50 15 60 25' stroke='pink' fill='pink'/%3E%3C/svg%3E" alt="น่ารัก">
-        <div class="question">จะเป็นแฟนหนูไหม?</div>
+        <div class="question">แฟนบอสไหม?</div>
         <div class="buttons">
-            <button class="yes" onclick="alert('ขอบคุณนะคะ 💕')">ตกลง</button>
-            <button class="no" onclick="alert('จริงๆ หรอคะ? 🥺')">ไม่ตกลง</button>
+            <button class="yes" onclick="sayYes()">เป็นค้าบบบ</button>
+            <button class="no" onclick="makeYesButtonBigger()">ไม่อ่ะ หึๆๆๆ</button>
         </div>
     </div>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
