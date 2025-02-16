@@ -20,8 +20,11 @@
         }
 
         .character {
-            width: 150px;
+            width: 200px;  /* ปรับขนาดรูปภาพ */
+            height: auto;
             margin-bottom: 20px;
+            border-radius: 10px; /* เพิ่มขอบมน */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* เพิ่มเงา */
         }
 
         .question {
@@ -74,12 +77,10 @@
             yesButton.style.fontSize = fontSize + 'px';
             yesButton.style.animation = 'bounce 0.5s';
             
-            // เพิ่มการสั่น
             setTimeout(() => {
                 yesButton.style.animation = '';
             }, 500);
 
-            // ถ้ากดหลายครั้ง จะมีข้อความแซว
             if (clickCount > 3) {
                 alert('กดไม่ต้องกดก็ได้นะ รู้ว่าอยากกดเป็นค้าบบบ 😏');
             }
@@ -92,7 +93,7 @@
 </head>
 <body>
     <div class="container">
-        <img class="character" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='45' fill='white' stroke='gray' stroke-width='2'/%3E%3Ccircle cx='35' cy='45' r='5' fill='black'/%3E%3Ccircle cx='65' cy='45' r='5' fill='black'/%3E%3Cpath d='M40 65 Q50 75 60 65' stroke='black' fill='none'/%3E%3Cpath d='M50 25 Q50 15 60 25' stroke='pink' fill='pink'/%3E%3C/svg%3E" alt="น่ารัก">
+        <img class="character" src="5d5ab1ef-99c5-4607-9260-44ddc2df0704.jpg" alt="รูปน่ารัก">
         <div class="question">แฟนบอสไหม?</div>
         <div class="buttons">
             <button class="yes" onclick="sayYes()">เป็นค้าบบบ</button>
