@@ -337,7 +337,7 @@ function sayYes() {
             loveMessage.style.left = '0';
             loveMessage.style.width = '100%';
             loveMessage.style.height = '100%';
-            loveMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            loveMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
             loveMessage.style.display = 'flex';
             loveMessage.style.flexDirection = 'column';
             loveMessage.style.justifyContent = 'center';
@@ -348,13 +348,12 @@ function sayYes() {
             
             // Add image
             const img = document.createElement('img');
-            img.src = '😳.jpg';
+            img.src = 'ดดดดดดดฟ.jpg';
             img.style.width = '250px';
             img.style.height = '250px';
             img.style.objectFit = 'cover';
             img.style.borderRadius = '15px';
-            img.style.marginBottom = '30px';
-            img.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+            img.style.marginBottom = '20px';
             img.style.animation = 'popIn 0.5s ease-out';
             
             // Add text
@@ -363,9 +362,8 @@ function sayYes() {
             text.style.color = '#ff4081';
             text.style.fontWeight = 'bold';
             text.style.textAlign = 'center';
-            text.style.textShadow = '2px 2px 4px rgba(0,0,0,0.1)';
             text.style.animation = 'popIn 0.5s ease-out 0.3s both';
-            text.innerHTML = 'รักที่รักนะครับ 💕';
+            text.innerHTML = 'รักที่รักนะครับ 💕✨';
             
             loveMessage.appendChild(img);
             loveMessage.appendChild(text);
@@ -390,10 +388,14 @@ function sayYes() {
             // Stop confetti after 3 seconds
             setTimeout(() => {
                 clearInterval(interval);
+                // Remove love message after delay
+                setTimeout(() => {
+                    document.body.removeChild(loveMessage);
+                }, 2000);
             }, 3000);
         }
         
-        // Add animations
+        // Add fadeIn and popIn animations
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
