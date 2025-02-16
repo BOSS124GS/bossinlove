@@ -1,110 +1,140 @@
 <!DOCTYPE html>
-<html>
+<html lang="th">
 <head>
     <title>แฟนบอสไหม?</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background-color: #ffe6ea;
+            background: linear-gradient(135deg, #ffe6ea 0%, #ffd1dc 100%);
             font-family: 'Sarabun', sans-serif;
         }
+        
         .container {
             text-align: center;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
+            transition: transform 0.3s ease;
         }
+        
+        .container:hover {
+            transform: translateY(-5px);
+        }
+        
         .character {
-            width: 200px;
-            height: 200px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 250px;
+            height: 250px;
             object-fit: cover;
-            transition: all 0.3s ease;
+            margin-bottom: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
         }
+        
+        .character:hover {
+            transform: scale(1.05);
+        }
+        
         .question {
-            font-size: 24px;
-            color: #666;
-            margin-bottom: 20px;
+            font-size: 28px;
+            color: #ff6b8b;
+            margin-bottom: 25px;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
         }
+        
         .buttons {
             display: flex;
-            gap: 20px;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
         }
+        
         button {
-            padding: 10px 30px;
-            font-size: 18px;
+            padding: 12px 35px;
+            font-size: 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 50px;
             cursor: pointer;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
+            font-family: 'Sarabun', sans-serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
+        
+        .yes {
+            background: linear-gradient(45deg, #ff9eb5, #ff7d9c);
+            color: white;
+        }
+        
+        .no {
+            background: linear-gradient(45deg, #8d9db9, #738aa8);
+            color: white;
+        }
+        
         button:hover {
             transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
-        .yes {
-            background-color: #ff9eb5;
-            color: white;
-        }
-        .no {
-            background-color: #8d9db9;
-            color: white;
-        }
+        
         @keyframes bounce {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            50% { transform: translateY(-15px); }
         }
-    </style>
-    <script>
-        let fontSize = 18;
-        let clickCount = 0;
-        const images = [
-            '/api/placeholder/200/200',
-            '/api/placeholder/220/220',
-            '/api/placeholder/240/240',
-            '/api/placeholder/260/260'
-        ];
-        let currentImageIndex = 0;
+        
+        @keyframes heartBeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            40% { transform: scale(1); }
+            60% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
 
-        function makeYesButtonBigger() {
-            clickCount++;
-            fontSize += 5;
-            const yesButton = document.querySelector('.yes');
-            const characterImg = document.querySelector('.character');
-            
-            // Update button size and animation
-            yesButton.style.fontSize = fontSize + 'px';
-            yesButton.style.animation = 'bounce 0.5s';
-            
-            // Change image
-            currentImageIndex = (currentImageIndex + 1) % images.length;
-            characterImg.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                characterImg.src = images[currentImageIndex];
-                characterImg.style.transform = 'scale(1)';
-            }, 150);
-            
-            setTimeout(() => {
-                yesButton.style.animation = '';
-            }, 500);
+        .heart-animation {
+            animation: heartBeat 1s ease-in-out;
+        }
 
-            if (clickCount > 3) {
-                alert('กดไม่ต้องกดก็ได้นะ รู้ว่าอยากกดเป็นค้าบบบ 😏');
+        @keyframes imageChange {
+            0% { opacity: 0; transform: scale(0.8); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        
+        .image-change {
+            animation: imageChange 0.5s ease-out;
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                width: 90%;
+                padding: 15px;
+            }
+            
+            .character {
+                width: 200px;
+                height: 200px;
+            }
+            
+            .question {
+                font-size: 24px;
+            }
+            
+            button {
+                padding: 10px 25px;
+                font-size: 18px;
             }
         }
-
-        function sayYes() {
-            alert('อิอิ รักนะค้าบบบ 💕');
-        }
-    </script>
+    </style>
 </head>
 <body>
     <div class="container">
-        <img class="character" src="/api/placeholder/200/200" alt="รูปน่ารัก">
+        <img class="character" src="34c784d7-d604-4254-b391-7c02df359135.jpg" alt="น่ารักจังเลย">
         <div class="question">แฟนบอสไหม?</div>
         <div class="buttons">
             <button class="yes" onclick="sayYes()">เป็นค้าบบบ</button>
@@ -112,5 +142,63 @@
         </div>
     </div>
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    
+    <script>
+        let fontSize = 20;
+        let clickCount = 0;
+        let currentImageIndex = 0;
+        
+        const images = [
+            '34c784d7-d604-4254-b391-7c02df359135.jpg',
+            '4ed1e732-b65f-4b2c-a2c4-4d987f57ed11.jpg',
+            '7a0f0fd5-4208-4e27-bea5-9f54063a0fc8.jpg',
+            '94ac489f-e04e-42b4-9253-22e861f8deaf.jpg'
+        ];
+        
+        function changeImage() {
+            const img = document.querySelector('.character');
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+            img.classList.remove('image-change');
+            void img.offsetWidth; // Trigger reflow
+            img.classList.add('image-change');
+            img.src = images[currentImageIndex];
+        }
+        
+        function makeYesButtonBigger() {
+            clickCount++;
+            fontSize += 5;
+            const yesButton = document.querySelector('.yes');
+            const noButton = document.querySelector('.no');
+            
+            // Change image
+            changeImage();
+            
+            yesButton.style.fontSize = fontSize + 'px';
+            yesButton.style.animation = 'bounce 0.5s ease';
+            yesButton.classList.add('heart-animation');
+            
+            setTimeout(() => {
+                yesButton.style.animation = '';
+                yesButton.classList.remove('heart-animation');
+            }, 500);
+            
+            if (clickCount === 3) {
+                alert('กดไม่ต้องกดก็ได้นะ รู้ว่าอยากกดเป็นค้าบบบ 😏');
+            } else if (clickCount > 5) {
+                noButton.style.display = 'none';
+                alert('โอเคๆ เข้าใจละ อยากกดปุ่มเป็นใช่ไหมล่ะ 😋');
+            }
+        }
+        
+        function sayYes() {
+            const container = document.querySelector('.container');
+            container.style.animation = 'heartBeat 1s ease-in-out';
+            setTimeout(() => {
+                alert('อิอิ รักนะค้าบบบ 💕✨');
+                confetti();
+            }, 200);
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
 </body>
 </html>
