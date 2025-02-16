@@ -1,51 +1,4 @@
-function sayYes() {
-            const container = document.querySelector('.container');
-            const question = document.querySelector('.question');
-            
-            // Create and add love message overlay
-            const loveMessage = document.createElement('div');
-            loveMessage.style.position = 'fixed';
-            loveMessage.style.top = '0';
-            loveMessage.style.left = '0';
-            loveMessage.style.width = '100%';
-            loveMessage.style.height = '100%';
-            loveMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-            loveMessage.style.display = 'flex';
-            loveMessage.style.flexDirection = 'column';
-            loveMessage.style.justifyContent = 'center';
-            loveMessage.style.alignItems = 'center';
-            loveMessage.style.padding = '20px';
-            loveMessage.style.animation = 'fadeIn 1s ease-in-out';
-            loveMessage.style.zIndex = '1000';
-            
-            // Add image
-            const img = document.createElement('img');
-            img.src = '😳.jpg';
-            img.style.width = '250px';
-            img.style.height = '250px';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = '15px';
-            img.style.marginBottom = '20px';
-            img.style.animation = 'popIn 0.5s ease-out';
-            
-            // Add text
-            const text = document.createElement('div');
-            text.style.fontSize = '48px';
-            text.style.color = '#ff4081';
-            text.style.fontWeight = 'bold';
-            text.style.textAlign = 'center';
-            text.style.animation = 'popIn 0.5s ease-out 0.3s both';
-            text.innerHTML = 'อิอิ รักนะค้าบบบ 💕✨';
-            
-            loveMessage.appendChild(img);
-            loveMessage.appendChild(text);
-            document.body.appendChild(loveMessage);
-            
-            // Shoot confetti
-            confetti({
-                particleCount: 200,
-                spread: 100,
-                origin: { y<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <title>แฟนบอสไหม?</title>
@@ -339,34 +292,15 @@ function sayYes() {
             loveMessage.style.height = '100%';
             loveMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
             loveMessage.style.display = 'flex';
-            loveMessage.style.flexDirection = 'column';
             loveMessage.style.justifyContent = 'center';
             loveMessage.style.alignItems = 'center';
-            loveMessage.style.padding = '20px';
+            loveMessage.style.fontSize = '48px';
+            loveMessage.style.color = '#ff4081';
+            loveMessage.style.fontWeight = 'bold';
+            loveMessage.style.textAlign = 'center';
             loveMessage.style.animation = 'fadeIn 1s ease-in-out';
             loveMessage.style.zIndex = '1000';
-            
-            // Add image
-            const img = document.createElement('img');
-            img.src = 'ดดดดดดดฟ.jpg';
-            img.style.width = '250px';
-            img.style.height = '250px';
-            img.style.objectFit = 'cover';
-            img.style.borderRadius = '15px';
-            img.style.marginBottom = '20px';
-            img.style.animation = 'popIn 0.5s ease-out';
-            
-            // Add text
-            const text = document.createElement('div');
-            text.style.fontSize = '48px';
-            text.style.color = '#ff4081';
-            text.style.fontWeight = 'bold';
-            text.style.textAlign = 'center';
-            text.style.animation = 'popIn 0.5s ease-out 0.3s both';
-            text.innerHTML = 'รักที่รักนะครับ 💕✨';
-            
-            loveMessage.appendChild(img);
-            loveMessage.appendChild(text);
+            loveMessage.innerHTML = 'อิอิ รักนะค้าบบบ 💕✨';
             document.body.appendChild(loveMessage);
             
             // Shoot confetti
@@ -395,24 +329,15 @@ function sayYes() {
             }, 3000);
         }
         
-        // Add fadeIn and popIn animations
+        // Add fadeIn animation
         const style = document.createElement('style');
         style.textContent = `
             @keyframes fadeIn {
                 from {
                     opacity: 0;
-                }
-                to {
-                    opacity: 1;
-                }
-            }
-            
-            @keyframes popIn {
-                0% {
-                    opacity: 0;
                     transform: scale(0.3);
                 }
-                100% {
+                to {
                     opacity: 1;
                     transform: scale(1);
                 }
