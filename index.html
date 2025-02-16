@@ -358,6 +358,10 @@
         function sayYes() {
             const heartInterval = startHeartAnimation();
             
+            // เล่นเสียงเพลง
+            const audio = new Audio('oui-(slowed-reverb)-made-with-Voicemod.mp3');
+            audio.play();
+            
             const loveMessage = document.createElement('div');
             loveMessage.className = 'love-message';
             loveMessage.innerHTML = `
