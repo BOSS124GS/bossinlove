@@ -1,4 +1,51 @@
-<!DOCTYPE html>
+function sayYes() {
+            const container = document.querySelector('.container');
+            const question = document.querySelector('.question');
+            
+            // Create and add love message overlay
+            const loveMessage = document.createElement('div');
+            loveMessage.style.position = 'fixed';
+            loveMessage.style.top = '0';
+            loveMessage.style.left = '0';
+            loveMessage.style.width = '100%';
+            loveMessage.style.height = '100%';
+            loveMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            loveMessage.style.display = 'flex';
+            loveMessage.style.flexDirection = 'column';
+            loveMessage.style.justifyContent = 'center';
+            loveMessage.style.alignItems = 'center';
+            loveMessage.style.padding = '20px';
+            loveMessage.style.animation = 'fadeIn 1s ease-in-out';
+            loveMessage.style.zIndex = '1000';
+            
+            // Add image
+            const img = document.createElement('img');
+            img.src = '😳.jpg';
+            img.style.width = '250px';
+            img.style.height = '250px';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '15px';
+            img.style.marginBottom = '20px';
+            img.style.animation = 'popIn 0.5s ease-out';
+            
+            // Add text
+            const text = document.createElement('div');
+            text.style.fontSize = '48px';
+            text.style.color = '#ff4081';
+            text.style.fontWeight = 'bold';
+            text.style.textAlign = 'center';
+            text.style.animation = 'popIn 0.5s ease-out 0.3s both';
+            text.innerHTML = 'อิอิ รักนะค้าบบบ 💕✨';
+            
+            loveMessage.appendChild(img);
+            loveMessage.appendChild(text);
+            document.body.appendChild(loveMessage);
+            
+            // Shoot confetti
+            confetti({
+                particleCount: 200,
+                spread: 100,
+                origin: { y<!DOCTYPE html>
 <html lang="th">
 <head>
     <title>แฟนบอสไหม?</title>
@@ -281,33 +328,95 @@
         
         function sayYes() {
             const container = document.querySelector('.container');
-            const overlay = document.querySelector('.message-overlay');
             const question = document.querySelector('.question');
+            
+            // Create and add love message overlay
+            const loveMessage = document.createElement('div');
+            loveMessage.style.position = 'fixed';
+            loveMessage.style.top = '0';
+            loveMessage.style.left = '0';
+            loveMessage.style.width = '100%';
+            loveMessage.style.height = '100%';
+            loveMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
+            loveMessage.style.display = 'flex';
+            loveMessage.style.flexDirection = 'column';
+            loveMessage.style.justifyContent = 'center';
+            loveMessage.style.alignItems = 'center';
+            loveMessage.style.padding = '20px';
+            loveMessage.style.animation = 'fadeIn 1s ease-in-out';
+            loveMessage.style.zIndex = '1000';
+            
+            // Add image
+            const img = document.createElement('img');
+            img.src = '😳.jpg';
+            img.style.width = '250px';
+            img.style.height = '250px';
+            img.style.objectFit = 'cover';
+            img.style.borderRadius = '15px';
+            img.style.marginBottom = '30px';
+            img.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+            img.style.animation = 'popIn 0.5s ease-out';
+            
+            // Add text
+            const text = document.createElement('div');
+            text.style.fontSize = '48px';
+            text.style.color = '#ff4081';
+            text.style.fontWeight = 'bold';
+            text.style.textAlign = 'center';
+            text.style.textShadow = '2px 2px 4px rgba(0,0,0,0.1)';
+            text.style.animation = 'popIn 0.5s ease-out 0.3s both';
+            text.innerHTML = 'รักที่รักนะครับ 💕';
+            
+            loveMessage.appendChild(img);
+            loveMessage.appendChild(text);
+            document.body.appendChild(loveMessage);
             
             // Shoot confetti
             confetti({
-                particleCount: 150,
-                spread: 70,
+                particleCount: 200,
+                spread: 100,
                 origin: { y: 0.6 }
             });
             
-            // Change container appearance
-            container.style.animation = 'heartBeat 1s ease-in-out';
-            
-            // Update text with larger size and different style
-            question.style.fontSize = '36px';
-            question.style.color = '#ff4081';
-            question.innerHTML = 'อิอิ รักนะค้าบบบ 💕✨';
-            
-            // Add some extra effects
-            setTimeout(() => {
+            // Add continuous confetti effect
+            const interval = setInterval(() => {
                 confetti({
-                    particleCount: 100,
-                    spread: 100,
+                    particleCount: 50,
+                    spread: 70,
                     origin: { y: 0.7 }
                 });
-            }, 500);
+            }, 1000);
+            
+            // Stop confetti after 3 seconds
+            setTimeout(() => {
+                clearInterval(interval);
+            }, 3000);
         }
+        
+        // Add animations
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                }
+                to {
+                    opacity: 1;
+                }
+            }
+            
+            @keyframes popIn {
+                0% {
+                    opacity: 0;
+                    transform: scale(0.3);
+                }
+                100% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+            }
+        `;
+        document.head.appendChild(style);
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
 </body>
