@@ -23,8 +23,10 @@
             background-color: rgba(255, 255, 255, 0.9);
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(255, 182, 193, 0.2);
-            transition: all 0.5s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             position: relative;
+            max-width: 90%;
+            width: 400px;
         }
         
         .container.hide {
@@ -45,7 +47,7 @@
             align-items: center;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.5s ease;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             z-index: 1000;
         }
         
@@ -55,17 +57,18 @@
         }
         
         .message-text {
-            font-size: 48px;
+            font-size: clamp(24px, 5vw, 48px);
             color: #ff6b8b;
             text-align: center;
             margin-bottom: 30px;
             font-weight: bold;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
-            animation: popIn 0.5s ease-out;
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 0 20px;
         }
         
         .final-button {
-            font-size: 32px;
+            font-size: clamp(20px, 4vw, 32px);
             padding: 20px 50px;
             background: linear-gradient(45deg, #ff9eb5, #ff7d9c);
             color: white;
@@ -73,8 +76,9 @@
             border-radius: 50px;
             cursor: pointer;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-            animation: popIn 0.5s ease-out 0.3s both;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s both;
+            font-family: 'Sarabun', sans-serif;
         }
         
         .final-button:hover {
@@ -82,25 +86,14 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.25);
         }
         
-        @keyframes popIn {
-            0% {
-                transform: scale(0.3);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-        }
-        
         .character {
-            width: 250px;
-            height: 250px;
+            width: clamp(200px, 50vw, 250px);
+            height: clamp(200px, 50vw, 250px);
             object-fit: cover;
             margin-bottom: 25px;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .character:hover {
@@ -108,7 +101,7 @@
         }
         
         .question {
-            font-size: 28px;
+            font-size: clamp(20px, 4vw, 28px);
             color: #ff6b8b;
             margin-bottom: 25px;
             font-weight: bold;
@@ -120,15 +113,16 @@
             gap: 25px;
             justify-content: center;
             flex-wrap: wrap;
+            padding: 0 10px;
         }
         
         button {
             padding: 12px 35px;
-            font-size: 20px;
+            font-size: clamp(16px, 3vw, 20px);
             border: none;
             border-radius: 50px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: 'Sarabun', sans-serif;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
@@ -136,6 +130,24 @@
         .yes {
             background: linear-gradient(45deg, #ff9eb5, #ff7d9c);
             color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .yes::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: rotate(45deg);
+            transition: transform 0.5s;
+        }
+        
+        .yes:hover::after {
+            transform: rotate(45deg) translate(50%, 50%);
         }
         
         .no {
@@ -148,9 +160,42 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.15);
         }
         
+        .love-message {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: clamp(24px, 5vw, 48px);
+            color: #ff4081;
+            font-weight: bold;
+            text-align: center;
+            animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1000;
+            padding: 20px;
+        }
+        
+        @keyframes popIn {
+            0% {
+                transform: scale(0.3);
+                opacity: 0;
+            }
+            70% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+        
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-15px) scale(1.1); }
         }
         
         @keyframes heartBeat {
@@ -160,48 +205,59 @@
             60% { transform: scale(1.1); }
             100% { transform: scale(1); }
         }
-
-        .heart-animation {
-            animation: heartBeat 1s ease-in-out;
-        }
-
+        
         @keyframes imageChange {
             0% { opacity: 0; transform: scale(0.8); }
             100% { opacity: 1; transform: scale(1); }
         }
         
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .heart-animation {
+            animation: heartBeat 1s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .image-change {
-            animation: imageChange 0.5s ease-out;
+            animation: imageChange 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        @media (max-width: 480px) {
-            .container {
-                width: 90%;
-                padding: 15px;
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+        
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            animation: floatHeart 3s ease-in-out infinite;
+            opacity: 0;
+        }
+        
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
             }
-            
-            .character {
-                width: 200px;
-                height: 200px;
+            50% {
+                opacity: 1;
             }
-            
-            .question {
-                font-size: 24px;
-            }
-            
-            button {
-                padding: 10px 25px;
-                font-size: 18px;
-            }
-            
-            .message-text {
-                font-size: 32px;
-                padding: 0 20px;
-            }
-            
-            .final-button {
-                font-size: 24px;
-                padding: 15px 40px;
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
             }
         }
     </style>
@@ -213,32 +269,53 @@
     </div>
     
     <div class="container">
-        <img class="character" src="5d5ab1ef-99c5-4607-9260-44ddc2df0704.jpg" alt="น่ารักจังเลย">
+        <img class="character" src="/api/placeholder/400/320" alt="น่ารักจังเลย">
         <div class="question">แฟนบอสไหม?</div>
         <div class="buttons">
             <button class="yes" onclick="sayYes()">เป็นค้าบบบ</button>
             <button class="no" onclick="makeYesButtonBigger()">ไม่อ่ะ หึๆๆๆ</button>
         </div>
     </div>
+    
+    <div class="floating-hearts"></div>
+    
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
     
     <script>
         let fontSize = 20;
         let clickCount = 0;
         let currentImageIndex = 0;
+        let confettiInterval;
         
         const images = [
-            '34c784d7-d604-4254-b391-7c02df359135.jpg',
-            '4ed1e732-b65f-4b2c-a2c4-4d987f57ed11.jpg',
-            '7a0f0fd5-4208-4e27-bea5-9f54063a0fc8.jpg',
-            '94ac489f-e04e-42b4-9253-22e861f8deaf.jpg'
+            '/api/placeholder/400/320',
+            '/api/placeholder/400/320',
+            '/api/placeholder/400/320',
+            '/api/placeholder/400/320'
         ];
+        
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '💕';
+            heart.style.left = Math.random() * 100 + 'vw';
+            document.querySelector('.floating-hearts').appendChild(heart);
+            
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+        
+        function startHeartAnimation() {
+            return setInterval(createFloatingHeart, 300);
+        }
         
         function changeImage() {
             const img = document.querySelector('.character');
             currentImageIndex = (currentImageIndex + 1) % images.length;
             img.classList.remove('image-change');
-            void img.offsetWidth; // Trigger reflow
+            void img.offsetWidth;
             img.classList.add('image-change');
             img.src = images[currentImageIndex];
         }
@@ -255,14 +332,13 @@
         
         function makeYesButtonBigger() {
             clickCount++;
-            fontSize += 5;
+            fontSize = Math.min(fontSize + 5, 40);
             const yesButton = document.querySelector('.yes');
             
-            // Change image
             changeImage();
             
             yesButton.style.fontSize = fontSize + 'px';
-            yesButton.style.animation = 'bounce 0.5s ease';
+            yesButton.style.animation = 'bounce 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
             yesButton.classList.add('heart-animation');
             
             setTimeout(() => {
@@ -279,38 +355,20 @@
         }
         
         function sayYes() {
-            const container = document.querySelector('.container');
-            const question = document.querySelector('.question');
+            const heartInterval = startHeartAnimation();
             
-            // Create and add love message overlay
             const loveMessage = document.createElement('div');
-            loveMessage.style.position = 'fixed';
-            loveMessage.style.top = '0';
-            loveMessage.style.left = '0';
-            loveMessage.style.width = '100%';
-            loveMessage.style.height = '100%';
-            loveMessage.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
-            loveMessage.style.display = 'flex';
-            loveMessage.style.justifyContent = 'center';
-            loveMessage.style.alignItems = 'center';
-            loveMessage.style.fontSize = '48px';
-            loveMessage.style.color = '#ff4081';
-            loveMessage.style.fontWeight = 'bold';
-            loveMessage.style.textAlign = 'center';
-            loveMessage.style.animation = 'fadeIn 1s ease-in-out';
-            loveMessage.style.zIndex = '1000';
+            loveMessage.className = 'love-message';
             loveMessage.innerHTML = 'อิอิ รักนะค้าบบบ 💕✨';
             document.body.appendChild(loveMessage);
             
-            // Shoot confetti
             confetti({
                 particleCount: 200,
                 spread: 100,
                 origin: { y: 0.6 }
             });
             
-            // Add continuous confetti effect
-            const interval = setInterval(() => {
+            confettiInterval = setInterval(() => {
                 confetti({
                     particleCount: 50,
                     spread: 70,
@@ -318,32 +376,14 @@
                 });
             }, 1000);
             
-            // Stop confetti after 3 seconds
             setTimeout(() => {
-                clearInterval(interval);
-                // Remove love message after delay
+                clearInterval(confettiInterval);
+                clearInterval(heartInterval);
                 setTimeout(() => {
-                    document.body.removeChild(loveMessage);
+                    loveMessage.remove();
                 }, 2000);
             }, 3000);
         }
-        
-        // Add fadeIn animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeIn {
-                from {
-                    opacity: 0;
-                    transform: scale(0.3);
-                }
-                to {
-                    opacity: 1;
-                    transform: scale(1);
-                }
-            }
-        `;
-        document.head.appendChild(style);
     </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.6.0/confetti.browser.min.js"></script>
 </body>
 </html>
